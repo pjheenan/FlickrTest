@@ -1,0 +1,13 @@
+apply plugin: 'java'
+apply plugin: "net.ltgt.apt"
+
+dependencies {
+  compile project(':domain')
+
+  testApt rootProject.ext.libraries.daggerCompiler
+  testCompile testLibraries.junit
+  testCompile testLibraries.mockito
+}
+
+sourceCompatibility = "1.7"
+targetCompatibility = "1.7"
