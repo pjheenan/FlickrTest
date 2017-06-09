@@ -1,0 +1,16 @@
+apply plugin: 'java'
+apply plugin: "net.ltgt.apt"
+
+dependencies {
+  compile rootProject.ext.libraries.javaxInject
+  compile rootProject.ext.libraries.rxjava
+  compile rootProject.ext.libraries.dagger
+  apt rootProject.ext.libraries.daggerCompiler
+
+  testApt rootProject.ext.libraries.daggerCompiler
+  testCompile testLibraries.junit
+  testCompile testLibraries.mockito
+}
+
+sourceCompatibility = "1.7"
+targetCompatibility = "1.7"
