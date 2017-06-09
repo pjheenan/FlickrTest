@@ -1,0 +1,55 @@
+apply plugin: 'com.android.library'
+apply plugin: 'com.neenbedankt.android-apt'
+
+android {
+  compileSdkVersion rootProject.ext.compileSdkVersion
+  buildToolsVersion rootProject.ext.buildToolsVersion
+
+  defaultConfig {
+    minSdkVersion rootProject.ext.minSdkVersion
+    targetSdkVersion rootProject.ext.compileSdkVersion
+    versionCode 1
+    versionName "1.0"
+
+    testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+  }
+
+  compileOptions {
+    sourceCompatibility JavaVersion.VERSION_1_7
+    targetCompatibility JavaVersion.VERSION_1_7
+  }
+
+  buildTypes {
+    debug {
+      testCoverageEnabled true
+    }
+
+    release {
+      minifyEnabled false
+      proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+    }
+  }
+
+  packagingOptions {
+    exclude 'LICENSE.txt'
+  }
+}
+
+dependencies {
+  compile project(':domain')
+
+  compile rootProject.ext.libraries.supportAnnotations
+  apt rootProject.ext.libraries.daggerCompiler
+
+  testApt rootProject.ext.libraries.daggerCompiler
+  testCompile testLibraries.junit
+  testCompile testLibraries.mockito
+
+  androidTestApt rootProject.ext.libraries.daggerCompiler
+  androidTestCompile rootProject.ext.testLibraries.junit
+  androidTestCompile rootProject.ext.testLibraries.mockito
+  androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+    exclude group: 'com.android.support', module: 'support-annotations'
+  })
+
+}
