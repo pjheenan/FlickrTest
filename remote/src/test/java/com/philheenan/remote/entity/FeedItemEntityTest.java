@@ -18,7 +18,7 @@ public class FeedItemEntityTest extends RemoteBaseTest {
     super.setUp();
   }
 
-  @Test public void test_WhenJsonParsed_thenMediaEntityPopulated() {
+  @Test public void test_WhenJsonParsed_thenFeedItemEntityPopulated() {
     FeedItemEntity expected = new FeedItemEntity();
     expected.title = "A picture of the pier from 1975! Thanks Dave Leslie for sharing!";
     expected.link = "https://www.flickr.com/photos/61stpier/34353326624/";
