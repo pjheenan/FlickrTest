@@ -9,7 +9,7 @@ import org.junit.Test;
 
 public class FeedRemoteGatewayImplTest extends RemoteBaseTest {
 
-  FeedRemoteGateway gateway = new FeedRemoteGatewayImpl();
+  private FeedRemoteGateway gateway = new FeedRemoteGatewayImpl();
 
   @Before public void setUp() {
     super.setUp();
