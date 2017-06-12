@@ -1,6 +1,15 @@
 package com.philheenan.presentation;
 
-import junit.framework.TestCase;
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
 
-public class PresentationBaseTest extends TestCase {
+public class PresentationBaseTest {
+
+  @Before public void setUp() {
+  }
+
+  @Test public void emptyTest() {
+    Assert.assertTrue(true);
+  }
 }

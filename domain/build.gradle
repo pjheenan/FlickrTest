@@ -8,8 +8,8 @@ dependencies {
   apt rootProject.ext.libraries.daggerCompiler
 
   testApt rootProject.ext.libraries.daggerCompiler
-  testCompile testLibraries.junit
-  testCompile testLibraries.mockito
+  testCompile rootProject.ext.testLibraries.junit
+  testCompile rootProject.ext.testLibraries.mockito
 }
 
 sourceCompatibility = "1.7"
