@@ -1,6 +1,7 @@
 package com.philheenan.domain.action.loadfeed;
 
 import com.philheenan.domain.action.DomainRequest;
+import com.philheenan.domain.model.FeedPage;
 import rx.Observer;
 
 public class LoadFeedInteractor {
@@ -19,8 +20,8 @@ public class LoadFeedInteractor {
   }
 
   private void loadImageFeed() {
-    remoteGateway.loadFeed(buildDomainRequest()).subscribe(new Observer<Object>() {
-      @Override public void onNext(Object result) {
+    remoteGateway.loadFeed(buildDomainRequest()).subscribe(new Observer<FeedPage>() {
+      @Override public void onNext(FeedPage result) {
         output.onFeedLoaded(result);
       }
 
