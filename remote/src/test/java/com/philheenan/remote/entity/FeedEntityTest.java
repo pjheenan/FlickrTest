@@ -11,10 +11,12 @@ import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 public class FeedEntityTest extends RemoteBaseTest {
 
   private static final String jsonFileName = "/json/feed.json";
+  private static final String sampleResponseFilename = "/json/sampleFeed.json";
 
   @Before public void setUp() {
     super.setUp();
@@ -33,6 +35,14 @@ public class FeedEntityTest extends RemoteBaseTest {
     FeedEntity actual = gson.fromJson(json, FeedEntity.class);
 
     assertEquals("json parsing feed entity not as expected", expected, actual);
+  }
+
+  @Test public void test_whenFullSampleParsed_thenNoErrors() {
+    String json = TestUtils.readJSON(sampleResponseFilename);
+    FeedEntity actual = gson.fromJson(json, FeedEntity.class);
+
+    assertNotNull(actual);
+    assertEquals(actual.items.size(), 20);
   }
 
   private List<FeedItemEntity> arrangeItems(int count) {
