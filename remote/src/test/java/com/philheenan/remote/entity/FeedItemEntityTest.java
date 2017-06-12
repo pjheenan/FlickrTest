@@ -33,7 +33,7 @@ public class FeedItemEntityTest extends RemoteBaseTest {
     String json = TestUtils.readJSON(jsonFileName);
     FeedItemEntity actual = gson.fromJson(json, FeedItemEntity.class);
 
-    assertEquals("json parsing media entity not as expected", expected, actual);
+    assertEquals("json parsing feed item entity not as expected", expected, actual);
   }
 
   private MediaEntity arrangeMediaEntity() {
