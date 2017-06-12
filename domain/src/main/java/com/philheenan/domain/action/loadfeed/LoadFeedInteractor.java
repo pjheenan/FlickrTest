@@ -26,7 +26,8 @@ public class LoadFeedInteractor {
       }
 
       @Override public void onCompleted() {
-
+        //no used - business process does not require this.
+        // Completion happens on return of an error or FeedPage
       }
 
       @Override public void onError(Throwable e) {
