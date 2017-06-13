@@ -13,7 +13,7 @@ import rx.Subscriber;
 
 public class FeedRemoteGatewayImpl implements FeedRemoteGateway {
 
-  protected FeedClient feedClient;
+  FeedClient feedClient;
 
   @Override public Observable<FeedPage> loadFeed(DomainRequest request) {
     final FeedRequest remoteRequest = buildFeedRequest();
@@ -29,12 +29,12 @@ public class FeedRemoteGatewayImpl implements FeedRemoteGateway {
     });
   }
 
-  protected void processResponse(Subscriber<? super FeedPage> subscriber, FeedEntity feedEntity) {
+  void processResponse(Subscriber<? super FeedPage> subscriber, FeedEntity feedEntity) {
     subscriber.onNext(mapResponse(feedEntity));
     subscriber.onCompleted();
   }
 
-  protected void processError(Subscriber<? super FeedPage> subscriber, Throwable error) {
+  void processError(Subscriber<? super FeedPage> subscriber, Throwable error) {
     subscriber.onError(error);
   }
 
