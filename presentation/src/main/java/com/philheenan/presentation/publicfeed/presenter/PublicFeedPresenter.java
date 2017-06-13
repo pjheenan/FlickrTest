@@ -31,10 +31,10 @@ public class PublicFeedPresenter implements Presenter<PublicFeedViewModel>, Load
   }
 
   @Override public void onFeedLoaded(FeedPage imageFeed) {
+    data = imageFeed;
     if (imageFeed.imageItems == null || imageFeed.imageItems.isEmpty()) {
       viewModel.setViewState(ViewStates.EMPTY);
     } else {
-      data = imageFeed;
       viewModel.setViewState(ViewStates.LOADED);
     }
   }
