@@ -36,7 +36,7 @@ public class FeedItemEntity implements Mappable<ImageItem> {
     metaData.htmlDescription = description;
     metaData.publishedDate = publishedDate;
     if (tags != null && !tags.trim().isEmpty()) {
-      metaData.tags = tags.split(" ");
+      metaData.tags = tags.trim().split(" ");
     }
     return metaData;
   }
