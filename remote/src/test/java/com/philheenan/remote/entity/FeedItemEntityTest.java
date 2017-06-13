@@ -23,8 +23,9 @@ public class FeedItemEntityTest extends RemoteBaseTest {
     expected.title = "A picture of the pier from 1975! Thanks Dave Leslie for sharing!";
     expected.link = "https://www.flickr.com/photos/61stpier/34353326624/";
     expected.media = arrangeMediaEntity();
-    expected.dateTaken = arrangeFakeDate(9, 28, 30, -(8*60*60*1000));
-    expected.description = " <p><a href=\"https://www.flickr.com/people/61stpier/\">the61stpier</a> posted a photo:</p> <p><a href=\"https://www.flickr.com/photos/61stpier/34353326624/\" title=\"A picture of the pier from 1975! Thanks Dave Leslie for sharing!\"><img src=\"https://farm5.staticflickr.com/4254/34353326624_609429e79c_m.jpg\" width=\"240\" height=\"153\" alt=\"A picture of the pier from 1975! Thanks Dave Leslie for sharing!\" /></a></p> <p><a href=\"http://ift.tt/2t2reJg\" rel=\"nofollow\">ift.tt/2t2reJg</a></p>";
+    expected.dateTaken = arrangeFakeDate(9, 28, 30, -(8 * 60 * 60 * 1000));
+    expected.description =
+        " <p><a href=\"https://www.flickr.com/people/61stpier/\">the61stpier</a> posted a photo:</p> <p><a href=\"https://www.flickr.com/photos/61stpier/34353326624/\" title=\"A picture of the pier from 1975! Thanks Dave Leslie for sharing!\"><img src=\"https://farm5.staticflickr.com/4254/34353326624_609429e79c_m.jpg\" width=\"240\" height=\"153\" alt=\"A picture of the pier from 1975! Thanks Dave Leslie for sharing!\" /></a></p> <p><a href=\"http://ift.tt/2t2reJg\" rel=\"nofollow\">ift.tt/2t2reJg</a></p>";
     expected.publishedDate = arrangeFakeDate(14, 28, 30, 0);
     expected.author = "nobody@flickr.com (\"the61stpier\")";
     expected.authorId = "100739804@N04";

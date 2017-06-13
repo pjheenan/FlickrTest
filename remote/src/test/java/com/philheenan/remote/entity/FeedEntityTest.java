@@ -52,7 +52,7 @@ public class FeedEntityTest extends RemoteBaseTest {
       expected.title = "title " + i;
       expected.link = "https://www.flickr.com/photos/" + i + "/";
       expected.media = arrangeMediaEntity(i);
-      expected.dateTaken = arrangeFakeDate(9, 28, 30, -(8*60*60*1000));
+      expected.dateTaken = arrangeFakeDate(9, 28, 30, -(8 * 60 * 60 * 1000));
       expected.description = "description " + i;
       expected.publishedDate = arrangeFakeDate(14, 28, 30, 0);
       expected.author = i + "@flickr.com (\"" + i + "\")";
