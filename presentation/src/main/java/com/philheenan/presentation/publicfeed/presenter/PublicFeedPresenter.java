@@ -7,7 +7,7 @@ import com.philheenan.domain.model.FeedPage;
 import com.philheenan.domain.model.ImageItem;
 import com.philheenan.presentation.publicfeed.Presenter;
 import com.philheenan.presentation.publicfeed.viewmodel.PublicFeedViewModel;
-import com.philheenan.presentation.publicfeed.viewmodel.ViewStates;
+import com.philheenan.presentation.ViewStates;
 import java.util.List;
 
 public class PublicFeedPresenter implements Presenter<PublicFeedViewModel>, LoadFeedOutput {

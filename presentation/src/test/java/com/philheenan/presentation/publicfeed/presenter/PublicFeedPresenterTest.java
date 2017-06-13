@@ -6,7 +6,7 @@ import com.philheenan.domain.action.loadfeed.LoadFeedOutput;
 import com.philheenan.domain.model.FeedPage;
 import com.philheenan.domain.model.ImageItem;
 import com.philheenan.presentation.publicfeed.viewmodel.PublicFeedViewModel;
-import com.philheenan.presentation.publicfeed.viewmodel.ViewStates;
+import com.philheenan.presentation.ViewStates;
 import java.util.ArrayList;
 import java.util.List;
 import org.junit.Assert;

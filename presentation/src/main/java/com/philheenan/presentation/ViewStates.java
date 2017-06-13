@@ -1,4 +1,4 @@
-package com.philheenan.presentation.publicfeed.viewmodel;
+package com.philheenan.presentation;
 
 public class ViewStates {
 
