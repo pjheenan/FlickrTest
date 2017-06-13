@@ -28,7 +28,7 @@ public class FeedRemoteGatewayImplTest extends RemoteBaseTest {
   }
 
   @Test public void test_WhenLoadFeedCalled_thenObservableReturned() {
-    assertNotNull(gateway.loadFeed(new DomainRequest()));
+    assertNotNull(gateway.load(new DomainRequest()));
   }
 
   @Test public void test_whenResponseReturned_thenSubscriberCalled() {

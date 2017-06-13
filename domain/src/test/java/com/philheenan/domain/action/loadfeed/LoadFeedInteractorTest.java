@@ -3,7 +3,6 @@ package com.philheenan.domain.action.loadfeed;
 import com.philheenan.domain.DomainBaseTest;
 import com.philheenan.domain.action.DomainRequest;
 import com.philheenan.domain.model.FeedPage;
-import javax.inject.Inject;
 import org.junit.Before;
 import org.junit.Test;
 import rx.Observable;
@@ -13,7 +12,7 @@ import static org.mockito.Mockito.*;
 
 public class LoadFeedInteractorTest extends DomainBaseTest {
 
-  @Inject LoadFeedInteractor interactor;
+  LoadFeedInteractor interactor;
 
   @Before public void setUp() {
     super.setUp();
@@ -33,7 +32,7 @@ public class LoadFeedInteractorTest extends DomainBaseTest {
 
     interactor.execute();
 
-    verify(interactor.remoteGateway).loadFeed(any(DomainRequest.class));
+    verify(interactor.remoteGateway).load(any(DomainRequest.class));
   }
 
   @Test public void test_whenGatewayReturnsData_thenOutputIsCalledWithData() {
@@ -59,7 +58,7 @@ public class LoadFeedInteractorTest extends DomainBaseTest {
 
   private FeedRemoteGateway arrangeMockGateway(Observable<FeedPage> observable) {
     FeedRemoteGateway mockGateway = mock(FeedRemoteGateway.class);
-    when(mockGateway.loadFeed(any(DomainRequest.class))).thenReturn(observable);
+    when(mockGateway.load(any(DomainRequest.class))).thenReturn(observable);
     return mockGateway;
   }
 }
