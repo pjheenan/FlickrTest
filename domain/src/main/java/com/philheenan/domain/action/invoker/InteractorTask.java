@@ -4,13 +4,10 @@ import java.util.concurrent.FutureTask;
 
 public class InteractorTask extends FutureTask<Void> {
 
-  private final Thread.UncaughtExceptionHandler uncaughtExceptionHandler;
   private final String description;
 
-  public InteractorTask(Runnable runnable,
-      Thread.UncaughtExceptionHandler uncaughtExceptionHandler) {
+  public InteractorTask(Runnable runnable) {
     super(runnable, null);
-    this.uncaughtExceptionHandler = uncaughtExceptionHandler;
     this.description = runnable.getClass().toString();
   }
 
@@ -27,6 +24,5 @@ public class InteractorTask extends FutureTask<Void> {
     UnhandledInteractorException e =
         new UnhandledInteractorException(description, cause.getClass().getName());
     e.initCause(cause);
-    uncaughtExceptionHandler.uncaughtException(Thread.currentThread(), e);
   }
 }
