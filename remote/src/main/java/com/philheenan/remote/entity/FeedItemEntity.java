@@ -1,19 +1,45 @@
 package com.philheenan.remote.entity;
 
 import com.google.gson.annotations.SerializedName;
+import com.philheenan.domain.model.ImageItem;
+import com.philheenan.domain.model.ImageMetaData;
 import java.util.Date;
 
-public class FeedItemEntity {
+public class FeedItemEntity implements Mappable<ImageItem> {
 
-  @SerializedName("title") String title;
-  @SerializedName("link") String link;
-  @SerializedName("media") MediaEntity media;
-  @SerializedName("date_taken") Date dateTaken;
-  @SerializedName("description") String description;
-  @SerializedName("published") Date publishedDate;
-  @SerializedName("author") String author;
-  @SerializedName("author_id") String authorId;
-  @SerializedName("tags") String tags;
+  @SerializedName("title") public String title;
+  @SerializedName("link") public String link;
+  @SerializedName("media") public MediaEntity media;
+  @SerializedName("date_taken") public Date dateTaken;
+  @SerializedName("description") public String description;
+  @SerializedName("published") public Date publishedDate;
+  @SerializedName("author") public String author;
+  @SerializedName("author_id") public String authorId;
+  @SerializedName("tags") public String tags;
+
+  @Override public ImageItem mapToModel() {
+    ImageItem item = new ImageItem();
+    item.webUrl = link;
+    item.imageUrl = media != null ? media.mediaUrl : "";
+
+    item.metaData = mapMetaData();
+
+    return item;
+  }
+
+  private ImageMetaData mapMetaData() {
+    ImageMetaData metaData = new ImageMetaData();
+    metaData.title = title;
+    metaData.author = author;
+    metaData.authorId = authorId;
+    metaData.dateTaken = dateTaken;
+    metaData.htmlDescription = description;
+    metaData.publishedDate = publishedDate;
+    if (tags != null && !tags.trim().isEmpty()) {
+      metaData.tags = tags.split(" ");
+    }
+    return metaData;
+  }
 
   @Override public boolean equals(Object o) {
     if (this == o) {
@@ -68,7 +94,7 @@ public class FeedItemEntity {
   }
 
   @Override public String toString() {
-    return "FeedItemEntity{" + "title='" + title + '\'' + ", link='" + link + '\'' + ", media="
+    return "FeedItemEntity{" + "title='" + title + '\'' + ", webUrl='" + link + '\'' + ", media="
         + media + ", dateTaken=" + dateTaken + ", description='" + description + '\''
         + ", publishedDate=" + publishedDate + ", author='" + author + '\'' + ", authorId='"
         + authorId + '\'' + ", tags='" + tags + '\'' + '}';

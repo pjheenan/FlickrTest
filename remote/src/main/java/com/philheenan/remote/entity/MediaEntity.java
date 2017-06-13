@@ -4,7 +4,7 @@ import com.google.gson.annotations.SerializedName;
 
 public class MediaEntity {
 
-  @SerializedName("m") String mediaUrl;
+  @SerializedName("m") public String mediaUrl;
 
   @Override public boolean equals(Object o) {
     if (this == o) {

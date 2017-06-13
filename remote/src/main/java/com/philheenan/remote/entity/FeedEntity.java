@@ -2,21 +2,31 @@ package com.philheenan.remote.entity;
 
 import com.google.gson.annotations.SerializedName;
 import com.philheenan.domain.model.FeedPage;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 public class FeedEntity implements Mappable<FeedPage> {
 
-  @SerializedName("title") String title;
-  @SerializedName("link") String link;
-  @SerializedName("description") String description;
-  @SerializedName("modified") Date modified;
-  @SerializedName("generator") String generator;
-  @SerializedName("items") List<FeedItemEntity> items;
+  @SerializedName("title") public String title;
+  @SerializedName("link") public String link;
+  @SerializedName("description") public String description;
+  @SerializedName("modified") public Date modified;
+  @SerializedName("generator") public String generator;
+  @SerializedName("items") public List<FeedItemEntity> items;
 
   @Override public FeedPage mapToModel() {
     FeedPage page = new FeedPage();
+    page.title = title;
+    page.lastUpdateDate = modified;
+    page.webUrl = link;
 
+    page.imageItems = new ArrayList<>();
+    if (items != null && !items.isEmpty()) {
+      for (FeedItemEntity entity : items) {
+        page.imageItems.add(entity.mapToModel());
+      }
+    }
     return page;
   }
 
@@ -59,7 +69,7 @@ public class FeedEntity implements Mappable<FeedPage> {
   }
 
   @Override public String toString() {
-    return "FeedEntity{" + "title='" + title + '\'' + ", link='" + link + '\'' + ", description='"
+    return "FeedEntity{" + "title='" + title + '\'' + ", webUrl='" + link + '\'' + ", description='"
         + description + '\'' + ", modified=" + modified + ", generator='" + generator + '\''
         + ", items=" + items + '}';
   }
