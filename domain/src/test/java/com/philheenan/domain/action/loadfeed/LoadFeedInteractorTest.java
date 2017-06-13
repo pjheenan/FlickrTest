@@ -22,7 +22,7 @@ public class LoadFeedInteractorTest extends DomainBaseTest {
   @Test(expected = IllegalStateException.class)
   public void test_whenExecuteCalledAndOutputIsNull_thenErrorThrown() {
     interactor.setOutput(null);
-    interactor.execute();
+    interactor.run();
   }
 
   @Test public void test_whenInteractorCalledWithOutput_thenRemoteGatewayCalled() {
@@ -30,7 +30,7 @@ public class LoadFeedInteractorTest extends DomainBaseTest {
     interactor.setOutput(mockOutput);
     interactor.remoteGateway = arrangeMockGateway(Observable.<FeedPage>empty());
 
-    interactor.execute();
+    interactor.run();
 
     verify(interactor.remoteGateway).load(any(DomainRequest.class));
   }
@@ -40,7 +40,7 @@ public class LoadFeedInteractorTest extends DomainBaseTest {
     interactor.setOutput(mockOutput);
     interactor.remoteGateway = arrangeMockGateway(Observable.just(new FeedPage()));
 
-    interactor.execute();
+    interactor.run();
 
     verify(mockOutput).onFeedLoaded(eq(new FeedPage()));
   }
@@ -51,7 +51,7 @@ public class LoadFeedInteractorTest extends DomainBaseTest {
     interactor.remoteGateway =
         arrangeMockGateway(Observable.<FeedPage>error(new Throwable("error")));
 
-    interactor.execute();
+    interactor.run();
 
     verify(mockOutput).onFeedError(any(Error.class));
   }

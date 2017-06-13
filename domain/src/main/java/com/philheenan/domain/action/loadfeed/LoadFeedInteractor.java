@@ -1,16 +1,17 @@
 package com.philheenan.domain.action.loadfeed;
 
 import com.philheenan.domain.action.DomainRequest;
+import com.philheenan.domain.action.Interactor;
 import com.philheenan.domain.model.FeedPage;
 import rx.Observer;
 
-public class LoadFeedInteractor {
+public class LoadFeedInteractor implements Interactor {
 
   FeedRemoteGateway remoteGateway;
 
   private LoadFeedOutput output;
 
-  public void execute() {
+  @Override public void run() {
     checkOutput();
     loadImageFeed();
   }
