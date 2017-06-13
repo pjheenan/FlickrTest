@@ -6,18 +6,21 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.Toolbar;
 import android.util.AttributeSet;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.GridLayout;
 import android.widget.ProgressBar;
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import com.philheenan.domain.action.invoker.InteractorInvokerImpl;
+import com.philheenan.domain.action.loadfeed.LoadFeedInteractor;
 import com.philheenan.domain.model.ImageItem;
 import com.philheenan.presentation.ViewStates;
 import com.philheenan.presentation.publicfeed.Presenter;
 import com.philheenan.presentation.publicfeed.presenter.PublicFeedPresenter;
 import com.philheenan.presentation.publicfeed.viewmodel.PublicFeedViewModel;
-import javax.inject.Inject;
+import com.philheenan.remote.gateway.FeedRemoteGatewayImpl;
 
 public class GalleryView extends FrameLayout implements PublicFeedViewModel {
 
@@ -25,7 +28,7 @@ public class GalleryView extends FrameLayout implements PublicFeedViewModel {
   @BindView(R.id.galleryGrid) GridLayout gridLayout;
   @BindView(R.id.loading) ProgressBar loadingSpinner;
 
-  @Inject PublicFeedPresenter presenter;
+  PublicFeedPresenter presenter = new PublicFeedPresenter();
 
   public GalleryView(@NonNull Context context) {
     super(context);
@@ -67,7 +70,7 @@ public class GalleryView extends FrameLayout implements PublicFeedViewModel {
   }
 
   private void updateLoadingView(boolean isVisible) {
-    loadingSpinner.setVisibility(isVisible ? View.VISIBLE : View.GONE);
+    //loadingSpinner.setVisibility(isVisible ? View.VISIBLE : View.GONE);
   }
 
   @Override public void goToImageView(ImageItem item) {
@@ -75,21 +78,22 @@ public class GalleryView extends FrameLayout implements PublicFeedViewModel {
   }
 
   private void init() {
+    initView();
     initInjects();
-    initGrid();
     initPresenter();
   }
 
-  private void initGrid() {
-
+  private void initView() {
   }
 
   private void initInjects() {
     ButterKnife.bind(this);
-    //DaggerPublicFeedComponent.create();
   }
 
   private void initPresenter() {
+    // TODO: replace with dependency injection
+    LoadFeedInteractor interactor = new LoadFeedInteractor(new FeedRemoteGatewayImpl());
+    this.presenter = new PublicFeedPresenter(interactor, new InteractorInvokerImpl());
     getPresenter().setViewModel(this);
     getPresenter().start();
   }
