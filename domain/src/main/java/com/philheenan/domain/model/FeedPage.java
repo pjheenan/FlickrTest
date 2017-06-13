@@ -1,10 +1,13 @@
 package com.philheenan.domain.model;
 
+import java.util.Date;
 import java.util.List;
 
 public class FeedPage {
 
   public String title;
+  public String webUrl;
+  public Date lastUpdateDate;
   public List<ImageItem> imageItems;
 
   @Override public boolean equals(Object o) {
