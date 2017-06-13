@@ -11,6 +11,13 @@ public class LoadFeedInteractor implements Interactor {
 
   private LoadFeedOutput output;
 
+  public LoadFeedInteractor() {
+  }
+
+  public LoadFeedInteractor(FeedRemoteGateway remoteGateway) {
+    this.remoteGateway = remoteGateway;
+  }
+
   @Override public void run() {
     checkOutput();
     loadImageFeed();

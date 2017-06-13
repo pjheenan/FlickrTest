@@ -5,17 +5,26 @@ import com.philheenan.domain.action.loadfeed.LoadFeedInteractor;
 import com.philheenan.domain.action.loadfeed.LoadFeedOutput;
 import com.philheenan.domain.model.FeedPage;
 import com.philheenan.domain.model.ImageItem;
+import com.philheenan.presentation.ViewStates;
 import com.philheenan.presentation.publicfeed.Presenter;
 import com.philheenan.presentation.publicfeed.viewmodel.PublicFeedViewModel;
-import com.philheenan.presentation.ViewStates;
 import java.util.List;
 
 public class PublicFeedPresenter implements Presenter<PublicFeedViewModel>, LoadFeedOutput {
 
-  PublicFeedViewModel viewModel;
   LoadFeedInteractor interactor;
   InteractorInvoker invoker;
+
+  PublicFeedViewModel viewModel;
   FeedPage data;
+
+  public PublicFeedPresenter() {
+  }
+
+  public PublicFeedPresenter(LoadFeedInteractor interactor, InteractorInvoker invoker) {
+    this.interactor = interactor;
+    this.invoker = invoker;
+  }
 
   @Override public void setViewModel(PublicFeedViewModel viewModel) {
     this.viewModel = viewModel;
@@ -32,6 +41,8 @@ public class PublicFeedPresenter implements Presenter<PublicFeedViewModel>, Load
 
   @Override public void onFeedLoaded(FeedPage imageFeed) {
     data = imageFeed;
+
+    System.out.println("#### PRESENTER DATA: " + imageFeed.toString());
     if (imageFeed.imageItems == null || imageFeed.imageItems.isEmpty()) {
       viewModel.setViewState(ViewStates.EMPTY);
     } else {
