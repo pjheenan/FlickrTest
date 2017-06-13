@@ -15,7 +15,7 @@ public class FeedRemoteGatewayImpl implements FeedRemoteGateway {
 
   FeedClient feedClient;
 
-  @Override public Observable<FeedPage> loadFeed(DomainRequest request) {
+  @Override public Observable<FeedPage> load(DomainRequest request) {
     final FeedRequest remoteRequest = buildFeedRequest();
     return Observable.create(new Observable.OnSubscribe<FeedPage>() {
       @Override public void call(Subscriber<? super FeedPage> subscriber) {

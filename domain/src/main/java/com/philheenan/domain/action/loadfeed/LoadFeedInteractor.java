@@ -20,7 +20,18 @@ public class LoadFeedInteractor {
   }
 
   private void loadImageFeed() {
-    remoteGateway.loadFeed(buildDomainRequest()).subscribe(new Observer<FeedPage>() {
+    /**
+     * TODO: control the use of local data caching here
+     * If a local cache of data is enabled the call the local gateway here, check for data
+     * and whether the data is within the cache limit. The decision can then be made as to
+     * whether the remote call is required. If the data is cached and out of date, then update
+     * the local gateway when the remote returns before returning the data on the output
+     */
+    loadImageFeedRemote();
+  }
+
+  private void loadImageFeedRemote() {
+    remoteGateway.load(buildDomainRequest()).subscribe(new Observer<FeedPage>() {
       @Override public void onNext(FeedPage result) {
         output.onFeedLoaded(result);
       }
