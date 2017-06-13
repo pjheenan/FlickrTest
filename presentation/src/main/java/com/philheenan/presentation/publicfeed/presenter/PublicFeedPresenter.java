@@ -7,6 +7,7 @@ import com.philheenan.domain.model.FeedPage;
 import com.philheenan.domain.model.ImageItem;
 import com.philheenan.presentation.publicfeed.Presenter;
 import com.philheenan.presentation.publicfeed.viewmodel.PublicFeedViewModel;
+import com.philheenan.presentation.publicfeed.viewmodel.ViewStates;
 
 public class PublicFeedPresenter implements Presenter<PublicFeedViewModel>, LoadFeedOutput {
 
@@ -20,18 +21,22 @@ public class PublicFeedPresenter implements Presenter<PublicFeedViewModel>, Load
 
   @Override public void start() {
     startInteractor();
+    viewModel.setViewState(ViewStates.LOADING);
   }
 
   @Override public void finish() {
-
   }
 
   @Override public void onFeedLoaded(FeedPage imageFeed) {
-
+    if (imageFeed.imageItems == null || imageFeed.imageItems.isEmpty()) {
+      viewModel.setViewState(ViewStates.EMPTY);
+    } else {
+      viewModel.setViewState(ViewStates.LOADED);
+    }
   }
 
   @Override public void onFeedError(Error error) {
-
+    viewModel.setViewState(ViewStates.ERROR);
   }
 
   public void onItemSelected(ImageItem item) {
