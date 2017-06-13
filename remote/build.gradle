@@ -8,7 +8,6 @@ dependencies {
   compile rootProject.ext.libraries.retrofit
   compile rootProject.ext.libraries.retrofitGson
 
-  testApt rootProject.ext.libraries.daggerCompiler
   testCompile rootProject.ext.testLibraries.junit
   testCompile rootProject.ext.testLibraries.mockito
 }
