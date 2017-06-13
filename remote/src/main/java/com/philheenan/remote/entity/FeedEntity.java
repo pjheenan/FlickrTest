@@ -1,10 +1,11 @@
 package com.philheenan.remote.entity;
 
 import com.google.gson.annotations.SerializedName;
+import com.philheenan.domain.model.FeedPage;
 import java.util.Date;
 import java.util.List;
 
-public class FeedEntity {
+public class FeedEntity implements Mappable<FeedPage> {
 
   @SerializedName("title") String title;
   @SerializedName("link") String link;
@@ -12,6 +13,12 @@ public class FeedEntity {
   @SerializedName("modified") Date modified;
   @SerializedName("generator") String generator;
   @SerializedName("items") List<FeedItemEntity> items;
+
+  @Override public FeedPage mapToModel() {
+    FeedPage page = new FeedPage();
+
+    return page;
+  }
 
   @Override public boolean equals(Object o) {
     if (this == o) {

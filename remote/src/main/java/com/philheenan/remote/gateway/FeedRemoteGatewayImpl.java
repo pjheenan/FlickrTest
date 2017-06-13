@@ -43,6 +43,6 @@ public class FeedRemoteGatewayImpl implements FeedRemoteGateway {
   }
 
   private FeedPage mapResponse(FeedEntity entity) {
-    return new FeedPage();
+    return entity.mapToModel();
   }
 }
